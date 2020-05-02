@@ -9,16 +9,14 @@ const userSchema = new Schema({
     },
     calories: {
         type: Number,
-        required: true
+        required: false
     },
     caloriegoal: {
         type: Number,
         required: true
-    },
-    date: {
-        type: Date,
-        required: true
     }
+}, {
+    timestamps: true
 });
 
 const User = mongoose.model('User', userSchema);

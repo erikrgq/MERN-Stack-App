@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodSchema = new Schema({
-    name: {
+    owner: {
         type: String,
         required: true
     },
@@ -34,11 +34,9 @@ const foodSchema = new Schema({
     servingmeasurement: {
         type: String,
         required: true
-    },
-    username: {
-        type: String,
-        required: true
-    },
+    }
+},{
+    timestamps: true
 });
 
 const Food = mongoose.model('Food', foodSchema);

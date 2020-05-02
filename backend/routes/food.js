@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const Food = require('../models/food.model');
 
-//retrieves all of the food 
-router.route('/').get((res, req) => {
+// retrieves all of the food 
+router.route('/').get((req, res) => {
 
     const user = req.body.username;
 
@@ -12,29 +12,18 @@ router.route('/').get((res, req) => {
 
 });
 
-//add a food item to the databse
-router.route('/add').post((res, req) => {
-
-    const name, calories, ingredients, carbs, protein, fat, servings, servingmeasurement;
-
-    name = req.body.name;
-    calories = req.body.calories;
-    ingredients = req.body.ingredients;
-    carbs = req.body.carbs;
-    protein = req.body.protein;
-    fat = req.body.fat;
-    servings = req.body.servings;
-    servingmeasurement = req.body.servingmeasurement;
+// add a food item to the databse
+router.route('/add').post((req, res) => {
 
     const newFood = new Food({
-        name,
-        calories,
-        ingredients,
-        carbs,
-        protein,
-        fat,
-        sevings,
-        servingmeasurement
+        owner: req.body.owner,
+        calories: req.body.calories,
+        ingredients: req.body.ingredients,
+        carbs: req.body.carbs,
+        protein: req.body.protein,
+        fat: req.body.fat,
+        servings: req.body.servings,
+        servingmeasurement: req.body.servingmeasurement,
     });
 
     newFood.save()
@@ -43,18 +32,23 @@ router.route('/add').post((res, req) => {
 
 });
 
-//deletes food with id           
-router.route('/:id').delete((res, req) => {
+// deletes food with id           
+router.route('/:id').delete((req, res) => {
 
-    Food.findByIdAndDelete(req.params.id)
+    const id = req.body.id;
+
+    Food.findByIdAndDelete(id)
         .then(food => res.json(food))
         .catch(err => res.status(400).json(err));
 
 });
 
-router.route('/:id').put((res, req) => {
+// updates the food item by id
+router.route('/:id').put((req, res) => {
 
-    Food.findByIdAndUpdate(id, {calories: req.body.calories, carbs: req.body.carbs, protein: req.body.protein, fat: req.body.fat, servings: req.body.servings}, options, callback)
+    const id = req.body.id;
+
+    Food.findByIdAndUpdate(id, {calories: req.body.calories, carbs: req.body.carbs, protein: req.body.protein, fat: req.body.fat, servings: req.body.servings})
         .then(food => res.json(food))
         .catch(err => res.status(400).json(err));
 
