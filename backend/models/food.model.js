@@ -31,7 +31,7 @@ const foodSchema = new Schema({
         type: Number,
         required: true
     },
-    servingMeasurement: {
+    servingmeasurement: {
         type: String,
         required: true
     },
@@ -39,10 +39,6 @@ const foodSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        required: true
-    }
 });
 
 const Food = mongoose.model('User', foodSchema);
