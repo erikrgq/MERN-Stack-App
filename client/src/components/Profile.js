@@ -1,23 +1,27 @@
-import React from 'react'
+import React from 'react';
 
 export default function Profile() {
     return (
         <div id="profile">
             <main>
                 <div className="profile-user">
-                    <p>Welcome Back <span>Username</span> </p>
+                    <p>Welcome Please Make an Account</p>
                 </div>
-                <div className="profile-content">
+                <div className="content">
                     <div>
                         <p>User Settings</p>
                     </div>
-                    <section>
+                    <section className="card">
                         <div>
                             <p>Calorie Goal</p>
+                            <input placeholder="Enter Calorie Goal" />
                         </div>
                         <div>
-                            <input placeholder="Enter Calorie Goal" />
-                            <button>Enter</button>
+                            <p>Username</p>
+                            <input placeholder="Enter Username" />
+                        </div>
+                        <div>
+                            <button className="btn">Submit</button>
                         </div>
                     </section>
                 </div>
