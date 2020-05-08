@@ -17,7 +17,6 @@ export default function Search() {
                 <section className="content">
                     <SearchCard />
                     <SearchCard />
-                    <SearchCard />
                 </section>
             </main>
         </div>

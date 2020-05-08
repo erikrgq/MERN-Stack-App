@@ -14,6 +14,7 @@ function App() {
       <Route path='/' exact component={Profile}/>
       <Route path='/meals' exact component={Meals}/>
       <Route path='/search' exact component={Search}/>
+      
     </Router>
   );
 }

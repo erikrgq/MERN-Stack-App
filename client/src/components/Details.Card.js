@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export default function DetailsCard() {
+export default function DetailsCard(props) {
+
+    const changeDisplay = () => {
+        props.onClick(false);
+    }
+
     return (
         <div id="details">
-            <div class="card">
+            <div className="card">
                 <div>
                     <h2>Title here</h2>
-                    <button><FontAwesomeIcon icon={faTimes} /></button>
+                    <button onClick={() => changeDisplay()} className="btn btn-round"><FontAwesomeIcon icon={faTimes} /></button>
                 </div>
                 <div>
                     <label>Servings: </label>
@@ -34,7 +39,7 @@ export default function DetailsCard() {
                     <p>Protein: 200g</p>
                 </div>
                 <div>
-                    <button><FontAwesomeIcon icon={faPlus} /></button>
+                    <button className="btn btn-round"><FontAwesomeIcon icon={faPlus} /></button>
                 </div>
             </div>
         </div>
