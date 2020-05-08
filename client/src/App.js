@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <Nav />
-      <Route path='/profile' exact component={Profile}/>
+      <Route path='/' exact component={Profile}/>
       <Route path='/meals' exact component={Meals}/>
       <Route path='/search' exact component={Search}/>
     </Router>

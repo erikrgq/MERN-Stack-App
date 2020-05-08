@@ -22,10 +22,10 @@ a {
 }
 button{
   border: none;
+  cursor: pointer;
 }
 .btn {
   background-color: #9D74FF;
-  box-shadow: 0px 8px 15px 0px rgba(119,70,240,0.5);
   width: 100px;
   height: 55px;
   border-radius: 5px;
@@ -35,6 +35,10 @@ button{
   align-items: center;
   font-weight: 600;
   letter-spacing: 1px;
+  transition: all ease-out 500ms;
+}
+.btn:hover {
+  box-shadow: 0px 8px 15px 0px rgba(119,70,240,0.5);
 }
 .nav {
   width: 100%;
@@ -90,7 +94,7 @@ nav {
 }
 #profile .card div {
   display: flex;
-  width: 100%;
+  width: 320px;
   margin: 25px 0;
   justify-content: space-evenly;
 }

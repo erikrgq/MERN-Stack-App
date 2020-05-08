@@ -17,7 +17,7 @@ export default function Nav() {
                     </div>
                 </div>
                 <nav>
-                    <Link className="btn" to={'/profile'}>Profile</Link>
+                    <Link className="btn" to={'/'}>Profile</Link>
                     <Link className="btn" to={'/meals'}>Meals</Link>
                     <Link className="btn" to={'/search'}>Search</Link>
                 </nav>
