@@ -38,7 +38,7 @@ export default function Meals() {
                    <MealCard />
                    <MealCard />
                    <MealCard />
-                   <footer class="footer-table">
+                   <footer className="footer-table">
                         <div>Totals</div>
                         <div className="remove-cell"></div>
                         <div className="remove-cell"></div>
