@@ -11,8 +11,9 @@
 #root {
   background-image: linear-gradient(to right bottom, #c6c9ff, #bbbeff, #b0b3ff, #a4a9ff, #999eff);
   width: 100%;
-  padding: 0;
+  height: 100%;
   margin: 0;
+  padding-bottom: 50px;
 }
 p, span {
   font-size: 16px;
@@ -23,6 +24,11 @@ a {
 button{
   border: none;
   cursor: pointer;
+}
+input {
+  color: #2A2847;
+  border-radius: 5px;
+  transition: all ease-out 500ms;
 }
 .btn {
   background-color: #9D74FF;
@@ -37,7 +43,8 @@ button{
   letter-spacing: 1px;
   transition: all ease-out 500ms;
 }
-.btn:hover {
+.btn:hover,
+input:hover {
   box-shadow: 0px 8px 15px 0px rgba(119,70,240,0.5);
 }
 .nav {
@@ -83,10 +90,27 @@ nav {
   box-shadow: 0px 8px 15px 0px rgba(119,70,240,1);
   border-radius: 10px;
 }
-#profile, #meals, #search, #details {
-  height: 100vh;
+#meals, #search, #details {
+  height: 100%;
   width: 100%;
   margin: auto;
+}
+#footer {
+  width: 100%;
+  height: 50px;
+  margin-top: 75px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#footer a {
+  margin-left: 25px;
+}
+#footer a:hover {
+  text-decoration: underline;
+}
+#profile {
+  height: 500px;
 }
 #profile .card {
   flex-direction: column;
@@ -194,11 +218,14 @@ nav {
 .cell-details {
   cursor: pointer;
 }
-#search .card div:last-child {
-  display: flex;
-}
 #search .card-search {
   height: 75px;
+}
+.search {
+  display: flex;
+}
+#details {
+  position: relative;
 }
 #details h2,
 #details label,
@@ -208,12 +235,13 @@ nav {
 }
 #details .card {
   position: absolute;
-  max-width: 320px;
-  max-height: 500px;
+  bottom: 0;
+  left: calc(50% - 255px);
   display: flex;
   flex-direction: column;
   align-items: center;
   height: auto;
+  width: 320px;
 }
 #details .btn-round {
   width: 55px;
@@ -258,5 +286,8 @@ nav {
   }
   .meal-table .remove-cell {
     display: table-cell;
+  }
+  #details .card {
+    left: calc(50% - 296px);
   }
 }

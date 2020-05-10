@@ -9,12 +9,20 @@ export default function Search() {
                     <div>
                         <p>Search</p>
                     </div>
-                    <div>
+                    <div className="search">
                         <input placeholder="Search Food" />
                         <button className="btn">Search</button>
                     </div>
                 </section>
                 <section className="content">
+                    <SearchCard />
+                    <SearchCard />
+                    <SearchCard />
+                    <SearchCard />
+                    <SearchCard />
+                    <SearchCard />
+                    <SearchCard />
+                    <SearchCard />
                     <SearchCard />
                     <SearchCard />
                 </section>

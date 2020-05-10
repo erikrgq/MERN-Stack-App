@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import Profile from './components/Profile';
 import Meals from './components/meals/Meals';
 import Search from './components/search/Search';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Route path='/' exact component={Profile}/>
       <Route path='/meals' exact component={Meals}/>
       <Route path='/search' exact component={Search}/>
-      
+      <Footer />
     </Router>
   );
 }
