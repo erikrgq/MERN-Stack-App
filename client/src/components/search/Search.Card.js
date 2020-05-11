@@ -16,7 +16,7 @@ export default function SearchCard() {
             </div>
             <div>
                 {detailsDisplayProperty?
-                <DetailsCard onClick={changeDisplay} /> :
+                <DetailsCard onClick={changeDisplay} food={{foodtitle: 'pizza'}} propsOrigin={'search'} /> :
                 <button className="btn" onClick={() => setDetailsDisplayProperty(true)}>View Details</button>
                 }
             </div>

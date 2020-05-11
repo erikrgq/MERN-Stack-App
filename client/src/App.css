@@ -265,6 +265,9 @@ nav {
   align-items: baseline;
   height: 200px;
 }
+#details svg path {
+  color: #F1F1E6;
+}
 @media screen and (min-width: 767px) {
   .logo-section {
     justify-content: space-around;

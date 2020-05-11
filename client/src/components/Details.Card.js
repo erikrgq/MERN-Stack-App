@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPlus, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 export default function DetailsCard(props) {
 
@@ -12,7 +12,7 @@ export default function DetailsCard(props) {
         <div id="details">
             <div className="card">
                 <div>
-                    <h2>Title here</h2>
+                    <h2>{props.food.foodtitle}</h2>
                     <button onClick={() => changeDisplay()} className="btn btn-round"><FontAwesomeIcon icon={faTimes} /></button>
                 </div>
                 <div>
@@ -39,7 +39,14 @@ export default function DetailsCard(props) {
                     <p>Protein: 200g</p>
                 </div>
                 <div>
-                    <button className="btn btn-round"><FontAwesomeIcon icon={faPlus} /></button>
+                    {
+                        props.propsOrigin === 'meals' ? 
+                        <div>
+                        <button className="btn btn-round"><FontAwesomeIcon icon={faTrashAlt} /></button>
+                        <button className="btn btn-round"><FontAwesomeIcon icon={faEdit} /></button>
+                        </div> : 
+                        <button className="btn btn-round"><FontAwesomeIcon icon={faPlus} /></button>
+                    }
                 </div>
             </div>
         </div>
