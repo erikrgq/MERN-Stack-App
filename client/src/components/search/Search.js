@@ -6,7 +6,7 @@ export default function Search() {
         <div id="search">
             <main  className="content">
                 <section className="card">
-                    <div>
+                    <div className="search-title">
                         <p>Search</p>
                     </div>
                     <div className="search">

@@ -223,8 +223,16 @@ nav {
   height: 75px;
   position: relative;
 }
+.search-title {
+  display: none;
+}
 .search {
   display: flex;
+  width: 100%;
+  padding: 0 10px;
+}
+.search input {
+  width: 75%;
 }
 #details {
   position: absolute;
@@ -294,5 +302,14 @@ nav {
   }
   #details .card {
     left: calc(50% - 296px);
+  }
+  .search-title {
+    display: block;
+  }
+  .search {
+    width: auto;
+  }
+  .search input {
+    width: 100%;
   }
 }
