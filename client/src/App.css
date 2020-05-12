@@ -191,6 +191,7 @@ nav {
 }
 .cell-table {
   display: table-row;
+  position: relative;
 }
 .cell-table div {
   display: table-cell;
@@ -220,12 +221,16 @@ nav {
 }
 #search .card-search {
   height: 75px;
+  position: relative;
 }
 .search {
   display: flex;
 }
 #details {
-  position: relative;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  padding: 0;
 }
 #details h2,
 #details label,
@@ -234,9 +239,9 @@ nav {
   color: #2A2847;
 }
 #details .card {
-  position: absolute;
+  /*position: absolute;
   bottom: 0;
-  left: calc(50% - 255px);
+  left: 0;*/
   display: flex;
   flex-direction: column;
   align-items: center;
