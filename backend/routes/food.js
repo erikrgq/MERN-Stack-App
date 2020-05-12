@@ -33,7 +33,7 @@ router.route('/add').post((req, res) => {
 });
 
 // deletes food with id           
-router.route('/:id').delete((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
 
     const id = req.body.id;
 
@@ -44,7 +44,7 @@ router.route('/:id').delete((req, res) => {
 });
 
 // updates the food item by id
-router.route('/:id').put((req, res) => {
+router.route('/update/:id').put((req, res) => {
 
     const id = req.body.id;
 
