@@ -15,7 +15,7 @@
   margin: 0;
   padding-bottom: 50px;
 }
-p, span {
+p, span, input {
   font-size: 16px;
 }
 a {
@@ -90,7 +90,7 @@ nav {
   box-shadow: 0px 8px 15px 0px rgba(119,70,240,1);
   border-radius: 10px;
 }
-#meals, #search, #details {
+#meals, #search {
   height: 100%;
   width: 100%;
   margin: auto;
@@ -236,6 +236,7 @@ nav {
 }
 #details {
   position: absolute;
+  bottom: calc(50% - 150px);
   left: calc(50% - 160px);
   z-index: 1;
   padding: 0;
