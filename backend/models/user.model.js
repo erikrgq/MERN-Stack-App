@@ -14,6 +14,10 @@ const userSchema = new Schema({
     caloriegoal: {
         type: Number,
         required: true
+    },
+    food: {
+        type: Array,
+        required: false
     }
 }, {
     timestamps: true
