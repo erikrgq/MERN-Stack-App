@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodSchema = new Schema({
-    owner: {
-        type: String,
-        required: true
-    },
     calories: {
         type: Number,
         required: true
@@ -32,6 +28,10 @@ const foodSchema = new Schema({
         required: true
     },
     servingmeasurement: {
+        type: String,
+        required: true
+    },
+    date: {
         type: String,
         required: true
     }
