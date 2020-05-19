@@ -1,22 +1,24 @@
 const router = require('express').Router();
 const Food = require('../models/food.model');
+const User = require('../models/user.model');
 
 // retrieves all of the food 
 router.route('/').get((req, res) => {
 
-    const user = req.body.username;
+    const userID = req.body.id;
 
-    Food.find()
-        .then(food => res.json(food))
+    User.findById(userID)
+        .then(user => res.json(user.food))
         .catch(err => res.statusCode(400).json(err));
 
 });
 
 // add a food item to the databse
-router.route('/add').post((req, res) => {
+router.route('/add').put((req, res) => {
+
+    const userID = req.body.id;
 
     const newFood = new Food({
-        owner: req.body.owner,
         calories: req.body.calories,
         ingredients: req.body.ingredients,
         carbs: req.body.carbs,
@@ -24,22 +26,37 @@ router.route('/add').post((req, res) => {
         fat: req.body.fat,
         servings: req.body.servings,
         servingmeasurement: req.body.servingmeasurement,
+        date: req.body.date
     });
 
-    newFood.save()
-        .then(() => res.json('Food Added'))
-        .catch(err => res.status(400).json(err));
+    User.updateOne(
+        {_id: userID},
+        {$push: {food: newFood}},
+        function(error, result) {
+            if(error) {
+                res.send(error);
+            } else {
+                res.send(result);
+            }
+        }
+    );
 
 });
 
 // deletes food with id           
-router.route('/delete/:id').delete((req, res) => {
+router.route('/delete').delete((req, res) => {
 
-    const id = req.body.id;
+    const userID = req.body.id;
 
-    Food.findByIdAndDelete(id)
-        .then(food => res.json(food))
-        .catch(err => res.status(400).json(err));
+    const foodID = req.body.food;
+
+    Food.update(
+        {},
+        {$pull: { "food": { "_id": foodID } } },
+        { multi: true }
+    )
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json(err));
 
 });
 
