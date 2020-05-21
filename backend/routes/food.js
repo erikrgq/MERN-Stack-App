@@ -50,10 +50,10 @@ router.route('/delete').delete((req, res) => {
 
     const foodID = req.body.food;
 
-    Food.update(
+    Food.updateOne(
         {},
-        {$pull: { "food": { "_id": foodID } } },
-        { multi: true }
+        {$pull:  { food: [ {_id: foodID} ] } },
+        {}
     )
     .then(user => res.json(user))
     .catch(err => res.status(400).json(err));
