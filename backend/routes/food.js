@@ -5,13 +5,7 @@ const User = require('../models/user.model');
 // retrieves all of the food 
 router.route('/').get((req, res) => {
 
-    const foodList =  [
-        "5ecdb1d7973c901b84afb372",
-        "5ecdc4c4c2f6dc381022b1fd",
-        "5ecdc5840a66cf4ed091d3a8",
-        "5ecdc5950a66cf4ed091d3a9",
-        "5ecdc5bf0a66cf4ed091d3aa"
-    ];
+    const foodList = req.body.food;
 
     Food.find().where('_id').in(foodList).exec()
         .then(foodsFound => res.json(foodsFound))
@@ -22,7 +16,6 @@ router.route('/').get((req, res) => {
 // add a food item to the databse
 router.route('/add').put((req, res) => {
 
-    try {
         const userID = req.body.id;
 
         const newFood = new Food({
@@ -50,10 +43,8 @@ router.route('/add').put((req, res) => {
                     res.send(result);
                 }
             }
-        );
-    } catch (err) {
-        res.send(err);
-    }
+        )
+        .catch(error => res.status.length(400).json(error));
 
 });
 
@@ -64,13 +55,17 @@ router.route('/delete').delete((req, res) => {
 
     const foodID = req.body.food;
 
-    Food.updateOne(
-        {},
-        {$pull:  { food: [ {_id: foodID} ] } },
+    User.updateOne(
+        {_id: userID},
+        {$pull:  { food: [ {foodID} ] } },
         {}
     )
-    .then(user => res.json(user))
+    .then(res => res.json('food removed'))
     .catch(err => res.status(400).json(err));
+
+    Food.findByIdAndDelete(foodID)
+        .then(res => res.json('food deleted'))
+        .catch(error => res.status(400).json(error));
 
 });
 
