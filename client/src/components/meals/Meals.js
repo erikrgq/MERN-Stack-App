@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MealCard from './Meals.Card';
 
 export default function Meals() {
+
+    const [usersList, setUsersList] = useState([]);
+    const [currentUsersFoodList, setCurrentUsersFoodList] = useState();
+
+    const users = () => {
+
+        useEffect(() => {
+            fetch('http://localhost:5000/user/')
+                .then(res => res.json(res))
+                .then(res => setUsersList(res))
+                .catch(error => console.log(error));
+            
+        }, [usersList]);
+
+        console.log(usersList);
+
+    }
+
     return (
         <div id="meals">
             <main className="content">
