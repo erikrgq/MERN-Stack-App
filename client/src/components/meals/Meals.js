@@ -1,21 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import MealCard from './Meals.Card';
 
 export default function Meals() {
 
     const [usersList, setUsersList] = useState([]);
-    const [currentUsersFoodList, setCurrentUsersFoodList] = useState();
-
+    const [currentUserId, setCurrentUserId] = useState();
+    const [foodsList, setFoodsList] = useState([]);
 
     useEffect(function getUsers() {
-            fetch('http://localhost:5000/user/')
-                .then(res => res.json(res))
-                .then(res => setUsersList(res))
-                .catch(error => console.log(error));
-            
-    }, []);
+        fetch('http://localhost:5000/user/')
+            .then(res => res.json(res))
+            .then(res => setUsersList(res))
+            .catch(err => console.log(err));
+    },[]);
 
-    console.log(usersList);
+    useEffect(function getFoodsForUser() {
+
+        let foodList = [];
+
+        usersList.forEach((cur) => {
+            if(cur._id === currentUserId) {
+                foodList = [...cur.food];
+            }
+        });
+
+        const data = {
+            food: foodList
+        }
+
+        fetch('http://localhost:5000/food/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json(res))
+            .then(res => setFoodsList(res))
+            .catch(err => console.log(err));
+
+    }, [currentUserId, usersList])
+
+    const getCurrentUser = (e) => {
+
+        e.preventDefault();
+
+        const id = e.target.value;
+
+        setCurrentUserId(id);
+
+    }
+
+    console.log(foodsList);
 
     return (
         <div id="meals">
@@ -25,10 +61,14 @@ export default function Meals() {
                         <p>Choose User</p>
                     </div>
                     <div>
-                        <select className="btn"
-                        name="Enter Username">
-                            <option value="Erik">Erik</option>
-                            <option value="Carmen">Carmen</option>
+                        <select value={currentUserId} className="btn"
+                        name="Enter Username" onChange={getCurrentUser}>
+                            {usersList.length > 0 ?
+                            usersList.map((cur, i) => (
+                            <option key={cur._id} value={cur._id}>{cur.user}</option>
+                            )) : 
+                            ''
+                            }
                         </select>
                     </div>
                 </section>
