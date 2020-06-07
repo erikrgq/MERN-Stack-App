@@ -3,7 +3,7 @@ const Food = require('../models/food.model');
 const User = require('../models/user.model');
 
 // retrieves all of the food 
-router.route('/').get((req, res) => {
+router.route('/').put((req, res) => {
 
     const foodList = req.body.food;
 
