@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MealCard from './Meals.Card';
+import MealsCard from './Meals.Card';
 
 export default function Meals() {
 
@@ -51,7 +52,21 @@ export default function Meals() {
 
     }
 
-    console.log(foodsList);
+    const getSumOfMacros = (array, type) => {
+
+        let total = 0;
+
+        array.forEach((cur) => {
+            for (const property in cur) {
+                if (property === type) {
+                    total += cur[property];
+                }
+            }
+        });
+
+        return total;
+
+    }
 
     return (
         <div id="meals">
@@ -83,24 +98,20 @@ export default function Meals() {
                        <div className="remove-cell">Calories</div>
                        <div>Edit</div>
                    </header>
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
-                   <MealCard />
+                            {
+                                foodsList.length > 0 ?
+                                foodsList.map((cur) => (
+                                    <MealsCard key={cur._id} props={cur} />
+                                )) : ''
+                            }
                    <footer className="footer-table">
                         <div>Totals</div>
                         <div className="remove-cell"></div>
                         <div className="remove-cell"></div>
-                        <div>23</div>
-                        <div>45</div>
-                        <div>10</div>
-                        <div className="remove-cell">1000</div>
+                        <div>{getSumOfMacros(foodsList, 'fat')}</div>
+                        <div>{getSumOfMacros(foodsList, 'carbs')}</div>
+                        <div>{getSumOfMacros(foodsList, 'protein')}</div>
+                        <div className="remove-cell">{getSumOfMacros(foodsList, 'calories')}</div>
                         <div></div>
                     </footer>
                 </section>
