@@ -21,7 +21,7 @@ export default function MealsCard(props) {
             <div>{fat}</div>
             <div>{carbs}</div>
             <div>{protein}</div>
-            <div className="remove-cell">{calories}}</div>
+            <div className="remove-cell">{calories}</div>
             {
                 detailsDisplayProperty ? 
                 <Details onClick={changeDisplay} food={props.props} propsOrigin={'meals'} /> :
