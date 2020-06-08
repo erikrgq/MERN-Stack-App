@@ -19,6 +19,7 @@ router.route('/add').put((req, res) => {
         const userID = req.body.id;
 
         const newFood = new Food({
+            foodname: req.body.foodname,
             calories: req.body.calories,
             ingredients: req.body.ingredients,
             carbs: req.body.carbs,
