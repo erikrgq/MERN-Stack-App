@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodSchema = new Schema({
+    foodname: {
+        type: String,
+        required: true
+    },
     calories: {
         type: Number,
         required: true
