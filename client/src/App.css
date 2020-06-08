@@ -29,6 +29,15 @@ input {
   color: #2A2847;
   border-radius: 5px;
   transition: all ease-out 500ms;
+  outline: none;
+  border: none;
+}
+select {
+  outline: none;
+}
+option {
+  outline: none;
+  border: none;
 }
 .btn {
   background-color: #9D74FF;
