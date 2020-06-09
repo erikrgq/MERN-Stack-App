@@ -11,11 +11,11 @@ export default function MealsCard(props) {
         setDetailsDisplayProperty(false);
     }
 
-    const {calories, carbs, date, fat, ingredients, protein, servingsmeasurement, servings, _id} = props.props;
+    const {foodname, calories, carbs, date, fat, ingredients, protein, servingsmeasurement, servings, _id} = props.props;
     
     return (
         <div className="cell-table">
-            <div>Chicken</div>
+            <div>{foodname}</div>
             <div className="remove-cell">Meal 1</div>
             <div className="remove-cell">{servings}</div>
             <div>{fat}</div>
