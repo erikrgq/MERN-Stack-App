@@ -34,7 +34,25 @@ export default function DetailsCard(props) {
 
     const getIngredients = (arr) => {
 
-        return arr.map((cur) => cur);
+        if(arr.length > 6) {
+            arr = arr.slice(0, 6);
+        }
+
+        let foodsListWithCommas = [];
+
+        for (let i = 0; i < arr.length; i++) {
+
+            if(arr[i] !== arr[arr.length - 1]) {
+                foodsListWithCommas.push(arr[i] + ', ');
+            } else if(arr[i] === arr[5]) {
+                foodsListWithCommas.push(arr[i] + '...');
+            } else {
+                foodsListWithCommas.push(arr[i]);
+            }
+            
+        }
+
+        return foodsListWithCommas;
 
     }
 
