@@ -12,7 +12,7 @@ export default function MealsCard(props) {
     }
 
     const {foodname, calories, carbs, date, fat, ingredients, protein, servingsmeasurement, servings, _id} = props.props;
-    
+
     return (
         <div className="cell-table">
             <div>{foodname}</div>
@@ -24,7 +24,7 @@ export default function MealsCard(props) {
             <div className="remove-cell">{calories}</div>
             {
                 detailsDisplayProperty ? 
-                <Details onClick={changeDisplay} food={props.props} propsOrigin={'meals'} /> :
+                <Details onClick={changeDisplay} food={props.props} list={props.food} propsOrigin={'meals'} /> :
                 <div onClick={() => setDetailsDisplayProperty(true)} className="cell-details"><FontAwesomeIcon icon={faEllipsisH} /></div>
             }
         </div>
