@@ -16,6 +16,12 @@ export default function DetailsCard(props) {
             food: foodItemId
         }
 
+        const updatedFoodsList = props.list.foodsList.filter((cur) => {
+            if (cur._id !== foodItemId) {
+                return cur;
+            }
+        });
+
         const res = await fetch('http://localhost:5000/food/delete/', {
             method: 'DELETE',
             headers: {
@@ -24,8 +30,9 @@ export default function DetailsCard(props) {
             body: JSON.stringify(data)
         })
             .then(res => res.json(res))
-            .then(res => alert('Food Deleted'))
+            .then(props.list.setFoodsList(updatedFoodsList))
             .catch(err => console.log(err));
+        
     }
 
     const changeDisplay = () => {
@@ -55,7 +62,7 @@ export default function DetailsCard(props) {
         return foodsListWithCommas;
 
     }
-
+    console.log(props);
     return (
         <div id="details">
             <div className="card">
