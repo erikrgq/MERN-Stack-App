@@ -101,7 +101,7 @@ export default function Meals() {
                             {
                                 foodsList.length > 0 ?
                                 foodsList.map((cur) => (
-                                    <MealsCard key={cur._id} props={cur} />
+                                    <MealsCard key={cur._id} props={cur} food={{foodsList, setFoodsList}} />
                                 )) : ''
                             }
                    <footer className="footer-table">
