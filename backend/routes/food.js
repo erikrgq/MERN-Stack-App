@@ -71,11 +71,11 @@ router.route('/delete').delete((req, res) => {
 });
 
 // updates the food item by id
-router.route('/update/:id').put((req, res) => {
+router.route('/update').put((req, res) => {
 
     const id = req.body.id;
 
-    Food.findByIdAndUpdate(id, {calories: req.body.calories, carbs: req.body.carbs, protein: req.body.protein, fat: req.body.fat, servings: req.body.servings})
+    Food.findByIdAndUpdate(id, {servings: req.body.servings})
         .then(food => res.json(food))
         .catch(err => res.status(400).json(err));
 
