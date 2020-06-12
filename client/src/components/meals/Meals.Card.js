@@ -18,13 +18,13 @@ export default function MealsCard(props) {
             <div>{foodname}</div>
             <div className="remove-cell">Meal 1</div>
             <div className="remove-cell">{servings}</div>
-            <div>{fat}</div>
-            <div>{carbs}</div>
-            <div>{protein}</div>
-            <div className="remove-cell">{calories}</div>
+            <div>{fat * servings}</div>
+            <div>{carbs * servings}</div>
+            <div>{protein * servings}</div>
+            <div className="remove-cell">{calories * servings}</div>
             {
                 detailsDisplayProperty ? 
-                <Details onClick={changeDisplay} food={props.props} list={props.food} propsOrigin={'meals'} /> :
+                <Details onClick={changeDisplay} food={props.props} list={props.food} userId={props.userId} propsOrigin={'meals'} /> :
                 <div onClick={() => setDetailsDisplayProperty(true)} className="cell-details"><FontAwesomeIcon icon={faEllipsisH} /></div>
             }
         </div>
