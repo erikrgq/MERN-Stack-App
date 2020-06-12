@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import MealCard from './Meals.Card';
 import MealsCard from './Meals.Card';
 
 export default function Meals() {
@@ -101,7 +100,7 @@ export default function Meals() {
                             {
                                 foodsList.length > 0 ?
                                 foodsList.map((cur) => (
-                                    <MealsCard key={cur._id} props={cur} food={{foodsList, setFoodsList}} />
+                                    <MealsCard key={cur._id} props={cur} food={{foodsList, setFoodsList}} userId={currentUserId} />
                                 )) : ''
                             }
                    <footer className="footer-table">
