@@ -56,11 +56,9 @@ export default function Meals() {
         let total = 0;
 
         array.forEach((cur) => {
-            for (const property in cur) {
-                if (property === type) {
-                    total += cur[property];
-                }
-            }
+
+            total += cur[type] * cur.servings;
+
         });
 
         return total;
