@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DetailsCard from '../Details.Card';
 
-export default function SearchCard() {
+export default function SearchCard(props) {
 
     const [detailsDisplayProperty, setDetailsDisplayProperty] = useState(false);
 
@@ -12,11 +12,11 @@ export default function SearchCard() {
     return (
         <div className="card card-search">
             <div>
-                <p>Chicken</p>
+                <p>{props.food.description}</p>
             </div>
             <div>
                 {detailsDisplayProperty?
-                <DetailsCard onClick={changeDisplay} food={{foodtitle: 'pizza'}} propsOrigin={'search'} /> :
+                <DetailsCard onClick={changeDisplay} food={props.food} propsOrigin={'search'} /> :
                 <button className="btn" onClick={() => setDetailsDisplayProperty(true)}>View Details</button>
                 }
             </div>
