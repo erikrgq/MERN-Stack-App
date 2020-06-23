@@ -4,10 +4,55 @@ import { faTimes, faPlus, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg
 
 export default function DetailsCard(props) {
 
-    const {calories, carbs, date, fat, ingredients, protein, servingsmeasurement, servings, _id} = props.food;
-
-    const [servingsNumber, setServingsNumber] = useState(servings);
+    const [servingsNumber, setServingsNumber] = useState(1);
     const [foodItemId, setFoodItemId] = useState(props.food._id);
+    const [foodObject, setFoodObject] = useState({});
+
+    useEffect(function setFoodState () {
+
+        const food = {};
+
+        const getMacrosWithId = (id) => {
+
+            let value = 0;
+
+            props.food.foodNutrients.forEach(cur => {
+
+                if (cur.nutrientId === id) {
+                    value = cur.value;
+                }
+
+            });
+
+            return value;
+
+        }
+
+        if (props.propsOrigin === 'search') {
+            food.foodname = props.food.description;
+            food.calories = getMacrosWithId(1008);
+            food.carbs = getMacrosWithId(1005);
+            food.fat = getMacrosWithId(1004);
+            food.protein = getMacrosWithId(1003);
+            food.ingredients = props.food.ingredients || '';
+            food.fdcId = props.food.fdcId;
+            food.servings = 1;
+        }  else if (props.propsOrigin === 'meals') {
+            food.foodname = props.food.foodname;
+            food.calories = props.food.calories;
+            food.carbs = props.food.carbs;
+            food.fat = props.food.fat;
+            food.protein = props.food.protein;
+            food.ingredients =props.food.ingredients || '';
+            food._id = props.food._id;
+            food.servings = props.food.servings;
+        }
+
+        setServingsNumber(props.food.servings);
+        setFoodObject(food);
+
+    }, [props.food])
+
 
     const deleteFoodItem = async () => {
 
@@ -65,7 +110,12 @@ export default function DetailsCard(props) {
         props.onClick(false);
     }
 
-    const getIngredients = (arr) => {
+    /*const getIngredients = (arr) => {
+
+        if(props.propsOrigin === 'search') {
+            arr = arr.replace(/[\])}[{(]/g, '').split(/\W/g);
+            console.log(arr)
+        }
 
         if(arr.length > 6) {
             arr = arr.slice(0, 6);
@@ -87,7 +137,7 @@ export default function DetailsCard(props) {
 
         return foodsListWithCommas;
 
-    }
+    }*/
     
     const changeFoodServings = (e) => {
         
@@ -99,13 +149,17 @@ export default function DetailsCard(props) {
 
     }
 
-    console.log('servings '+servingsNumber);
+    const updateMacros = type => {
+        return foodObject[type];
+    }
+
+    console.log(foodObject.calories);
 
     return (
         <div id="details">
             <div className="card">
                 <div>
-                    <h2>{props.food.foodtitle}</h2>
+                    <h2>{foodObject.foodname}</h2>
                     <button onClick={() => changeDisplay()} className="btn btn-round"><FontAwesomeIcon icon={faTimes} /></button>
                 </div>
                 <div>
@@ -124,13 +178,13 @@ export default function DetailsCard(props) {
                     </select>
                 </div>
                 <div>
-                <p>Ingredients: <span>{getIngredients(ingredients)}</span></p>
+                <p>Ingredients: <span>{foodObject.ingredients}</span></p>
                 </div>
                 <div className="details-macros">
-                    <p>Calories: {calories * servingsNumber}</p>
-                    <p>Fat: {fat * servingsNumber}g</p>
-                    <p>Carbs: {carbs *servingsNumber}g</p>
-                    <p>Protein: {protein * servingsNumber}g</p>
+                    <p>Calories: {updateMacros('calories') * servingsNumber}</p>
+                    <p>Fat: {foodObject.fat * servingsNumber}g</p>
+                    <p>Carbs: {foodObject.carbs *servingsNumber}g</p>
+                    <p>Protein: {foodObject.protein * servingsNumber}g</p>
                 </div>
                 <div>
                     {
